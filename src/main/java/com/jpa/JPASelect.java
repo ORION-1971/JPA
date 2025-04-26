@@ -13,14 +13,14 @@ public class JPASelect {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Введи id студента");
-        String id = sc.nextLine();
+        Long id = sc.nextLong();
         Student student = null;
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("jpa-course");
         EntityManager manager = factory.createEntityManager();
 
         try {
-            student = manager.find(Student.class, id);      // вывести студента с данным Id
+            student = manager.find(Student.class, id);      // Найти студента с данным Id
 
         } catch (Exception e) {
             e.printStackTrace();
