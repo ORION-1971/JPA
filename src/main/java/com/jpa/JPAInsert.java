@@ -8,6 +8,7 @@ import jakarta.persistence.Persistence;
 
 import java.util.Scanner;
 
+/// Добавление нового студента
 public class JPAInsert {
 
     public static void main(String[] args) {
