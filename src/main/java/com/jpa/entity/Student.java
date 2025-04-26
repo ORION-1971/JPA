@@ -2,6 +2,8 @@ package com.jpa.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "students", schema = "test_db")
 public class Student {
@@ -10,14 +12,18 @@ public class Student {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = true, length = 50)
     private String name;
 
-    @Column(name = "surname")
+    @Column(name = "surname", unique = true)
     private String surname;
 
     @Column(name = "avg_grade")
     private Double avgGrade;
+
+    @Transient                          // Временное поле - в таблице его нет
+    // @Column(name = "create_date")
+    private LocalDateTime createdDate;
 
     public Student(){}
 
@@ -25,6 +31,7 @@ public class Student {
         this.name = name;
         this.surname = surname;
         this.avgGrade = avgGrade;
+        createdDate = LocalDateTime.now();
     }
 
     public Long getId() {
@@ -59,6 +66,15 @@ public class Student {
         this.avgGrade = avgGrade;
     }
 
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
+
+
     @Override
     public String toString() {
         return "Student{" +
@@ -66,6 +82,7 @@ public class Student {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", avgGrade=" + avgGrade +
+                ", createdDate=" + createdDate +
                 '}';
     }
 }
